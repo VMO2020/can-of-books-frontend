@@ -7,3 +7,8 @@
 5. Terminal: `git branch -M main`
 6. Terminal: `git remote add origin https://github.com/VMO2020/can-of-books-frontend.git`
 7. Terminal: `git push -u origin main`
+8. Terminal: `npm i axios dotenv`
+
+## RUN
+
+Terminal: `npm start`
