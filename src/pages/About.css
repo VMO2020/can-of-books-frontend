@@ -1,0 +1,16 @@
+.about-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem;
+}
+
+.about-title {
+	font-size: 3rem;
+}
+
+.link {
+	font-size: 2rem;
+	text-decoration: none;
+}
