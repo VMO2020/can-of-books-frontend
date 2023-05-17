@@ -12,3 +12,9 @@
 ## RUN
 
 Terminal: `npm start`
+
+## ROUTER
+
+1. Terminal: `npm i react-router-dom`
+
+`App.js` ADD: `import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';`

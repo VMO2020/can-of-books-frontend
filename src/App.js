@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Book } from './components/Book';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+
 import { getBooks } from './services/getBooks';
 import { deleteBook } from './services/deleteBook';
 import { createBook } from './services/createBook';
-import { Modal } from './components/modal/Modal';
+import { Home } from './pages/Home';
+import { About } from './pages/About';
+import { Book } from './pages/Book';
 import './App.css';
 
 const initialForm = {
@@ -56,32 +59,37 @@ function App() {
 	}, [data]);
 
 	return (
-		<div className="App">
-			<h1>The Best Books</h1>
-			<button onClick={handleModal}>Add a new book</button>
-			{showModal && (
-				<Modal
-					handleModal={handleModal}
-					handleCreate={handleCreate}
-					handleInputChange={handleInputChange}
-					form={form}
-				/>
-			)}
-
-			<section className="books-container">
-				{data.length > 0 ? (
-					data.map((book) => (
-						<Book
-							book={book}
-							key={book._id}
-							handleDeleteBook={handleDeleteBook}
-						/>
-					))
-				) : (
-					<p className="empty">Book collection is empty</p>
-				)}
-			</section>
-		</div>
+		<BrowserRouter>
+			<div className="App">
+				<div className="header-container">
+					<Link to="/" className="link">
+						Home
+					</Link>
+					<Link to="/about" className="link">
+						About
+					</Link>
+				</div>
+				<h1>The Best Books</h1>
+				<Routes>
+					<Route
+						path="/"
+						element={
+							<Home
+								data={data}
+								handleDeleteBook={handleDeleteBook}
+								handleModal={handleModal}
+								handleCreate={handleCreate}
+								handleInputChange={handleInputChange}
+								form={form}
+								showModal={showModal}
+							/>
+						}
+					/>
+					<Route path="/about" element={<About />} />
+					<Route path="/book/:id" element={<Book data={data} />} />
+				</Routes>
+			</div>
+		</BrowserRouter>
 	);
 }
 
