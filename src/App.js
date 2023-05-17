@@ -1,41 +1,82 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import './App.css';
 import { Book } from './components/Book';
-import { getBooks } from './getBooks';
+import { getBooks } from './services/getBooks';
+import { deleteBook } from './services/deleteBook';
+import { createBook } from './services/createBook';
+import { Modal } from './components/modal/Modal';
+import './App.css';
+
+const initialForm = {
+	title: '',
+	description: '',
+	author: '',
+	price: '',
+	link: '',
+	image: '',
+	status: true,
+};
 
 function App() {
-	const [searchQuery, setSearchQuery] = useState('');
 	const [data, setData] = useState([]);
+	const [form, setForm] = useState(initialForm);
+	const [showModal, setShowModal] = useState(false);
 
-	const handleChange = (event) => {
-		// console.log(event.target.value);
-		setSearchQuery(event.target.value);
+	const handleInputChange = (event) => {
+		// setForm({ ...form, [event.target.name]: event.target.value });
+		const { name, value } = event.target;
+
+		if (name === 'price') {
+			setForm({ ...form, [name]: parseFloat(value) });
+		} else if (name === 'status') {
+			setForm({ ...form, [name]: value === 'true' });
+		} else {
+			setForm({ ...form, [name]: value });
+		}
 	};
 
-	const handleGetBooks = () => {
-		getBooks({ setData, searchQuery });
+	const handleCreate = (event) => {
+		event.preventDefault();
+		createBook(form);
+		// console.log(form);
+		setForm(initialForm);
+		setShowModal(false);
+	};
+
+	const handleDeleteBook = (id) => {
+		deleteBook(id);
+		getBooks({ setData });
+	};
+
+	const handleModal = () => {
+		setShowModal(!showModal);
 	};
 
 	useEffect(() => {
-		getBooks({ setData, searchQuery });
-	}, []);
+		getBooks({ setData });
+	}, [data]);
 
 	return (
 		<div className="App">
 			<h1>The Best Books</h1>
-			<div className="input">
-				<input
-					value={searchQuery}
-					onChange={handleChange}
-					placeholder="Add a query"
+			<button onClick={handleModal}>Add a new book</button>
+			{showModal && (
+				<Modal
+					handleModal={handleModal}
+					handleCreate={handleCreate}
+					handleInputChange={handleInputChange}
+					form={form}
 				/>
+			)}
 
-				<button onClick={handleGetBooks}>Get Books</button>
-			</div>
 			<section className="books-container">
 				{data.length > 0 ? (
-					data.map((book) => <Book book={book} key={book._id} />)
+					data.map((book) => (
+						<Book
+							book={book}
+							key={book._id}
+							handleDeleteBook={handleDeleteBook}
+						/>
+					))
 				) : (
 					<p className="empty">Book collection is empty</p>
 				)}

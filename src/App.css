@@ -1,9 +1,12 @@
 .App {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	gap: 1rem;
+	width: 100%;
+	font-family: monospace;
 }
 
 h1 {
@@ -11,12 +14,33 @@ h1 {
 }
 
 input,
+textarea,
 button {
 	font-size: 1.8rem;
 }
 
-.input {
+a {
+	display: block;
+}
+
+button {
+	margin-top: 1rem;
 	margin-bottom: 2rem;
+	padding: 0.5rem 2rem;
+	color: blue;
+	border: 2px solid blue;
+	border-radius: 0.5rem;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.delete {
+	color: red;
+	border: 1px solid red;
+	border-radius: 0.3rem;
+	background-color: transparent;
+	padding: 0.3rem 2rem;
+	cursor: pointer;
 }
 
 .books-container {

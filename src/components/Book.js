@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Book = ({ book }) => {
+export const Book = ({ book, handleDeleteBook }) => {
 	return (
 		<div className="card-container">
 			<div className="image-container">
@@ -14,6 +14,14 @@ export const Book = ({ book }) => {
 				<a href={book.link} target="_blank" rel="noreferrer">
 					{book.link}
 				</a>
+				<button
+					className="delete"
+					onClick={() => {
+						handleDeleteBook(book._id);
+					}}
+				>
+					Delete
+				</button>
 			</div>
 		</div>
 	);
