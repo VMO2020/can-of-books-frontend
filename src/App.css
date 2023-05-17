@@ -53,19 +53,24 @@ button {
 
 .delete {
 	color: red;
+	width: 100%;
 	border: 1px solid red;
 	border-radius: 0.3rem;
 	background-color: transparent;
+	margin: 0;
 	padding: 0.3rem 2rem;
 	cursor: pointer;
 }
 
-.update {
+.card-link {
+	font-size: 2rem;
+	text-align: center;
 	color: blue;
+	text-decoration: none;
 	border: 1px solid blue;
 	border-radius: 0.3rem;
 	background-color: transparent;
-	margin-left: 1rem;
+	margin-left: 0;
 	padding: 0.3rem 2rem;
 	cursor: pointer;
 }
@@ -107,6 +112,10 @@ button {
 	width: 400px;
 }
 
+.text-container-update {
+	/* width: 400px; */
+}
+
 .empty {
 	color: red;
 	font-size: 2rem;
@@ -126,18 +135,5 @@ button {
 	padding: 0.3rem 2rem;
 	border: 2px solid blue;
 	border-radius: 0.3rem;
-	cursor: pointer;
-}
-
-.card-link {
-	font-size: 2rem;
-	width: 5rem;
-	color: blue;
-	text-decoration: none;
-	border: 1px solid blue;
-	border-radius: 0.3rem;
-	background-color: transparent;
-	margin-left: 0;
-	padding: 0.3rem 2rem;
 	cursor: pointer;
 }
