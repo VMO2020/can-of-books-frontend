@@ -35,6 +35,7 @@ export const Book = () => {
 		event.preventDefault();
 		// console.log(form);
 		updateBook({ form, id });
+		alert('success: updated book');
 	};
 
 	useEffect(() => {
