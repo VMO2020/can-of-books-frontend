@@ -1,0 +1,11 @@
+.footer-container {
+	text-align: center;
+	color: blue;
+	margin-top: 4rem;
+	width: 100%;
+	border: 2px solid blue;
+}
+
+.footer-container p {
+	font-size: 2rem;
+}

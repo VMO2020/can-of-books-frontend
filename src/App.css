@@ -122,12 +122,6 @@ button {
 	font-size: 2rem;
 }
 
-.header-container {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
 .link {
 	font-size: 2rem;
 	margin: 1rem 2rem;

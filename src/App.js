@@ -8,6 +8,8 @@ import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Book } from './pages/Book';
 import './App.css';
+import { Header } from './components/header/header';
+import { Footer } from './components/footer/footer';
 
 const initialForm = {
 	title: '',
@@ -61,14 +63,7 @@ function App() {
 	return (
 		<BrowserRouter>
 			<div className="App">
-				<div className="header-container">
-					<Link to="/" className="link">
-						Home
-					</Link>
-					<Link to="/about" className="link">
-						About
-					</Link>
-				</div>
+				<Header />
 				<h1>The Best Books</h1>
 				<Routes>
 					<Route
@@ -89,6 +84,7 @@ function App() {
 					<Route path="/book/:id" element={<Book data={data} />} />
 				</Routes>
 			</div>
+			<Footer />
 		</BrowserRouter>
 	);
 }
