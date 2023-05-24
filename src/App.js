@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { getBooks } from './services/getBooks';
-import { deleteBook } from './services/deleteBook';
 import { createBook } from './services/createBook';
+import { deleteBook } from './services/deleteBook';
+
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Book } from './pages/Book';
-import './App.css';
+
 import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
+
+import './App.css';
 
 const initialForm = {
 	title: '',
@@ -39,16 +42,17 @@ function App() {
 		}
 	};
 
-	const handleCreate = (event) => {
+	const handleCreate = async (event) => {
 		event.preventDefault();
-		createBook(form);
+		await createBook(form);
 		// console.log(form);
 		setForm(initialForm);
 		setShowModal(false);
+		getBooks({ setData });
 	};
 
-	const handleDeleteBook = (id) => {
-		deleteBook(id);
+	const handleDeleteBook = async (id) => {
+		await deleteBook(id);
 		getBooks({ setData });
 	};
 
@@ -58,7 +62,7 @@ function App() {
 
 	useEffect(() => {
 		getBooks({ setData });
-	}, [data]);
+	}, []);
 
 	return (
 		<BrowserRouter>
